@@ -1,15 +1,7 @@
-FROM node:14
-
-WORKDIR /usr/src/app
-
-
-COPY package*.json ./
-
-
-RUN npm install
-
+FROM python:3.9
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-
-EXPOSE 3000
-
-CMD [ "node", "app.js" ]
+EXPOSE 80
+CMD ["python", "app.py"]
